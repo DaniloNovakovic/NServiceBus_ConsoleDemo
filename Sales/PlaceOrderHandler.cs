@@ -1,4 +1,5 @@
 ﻿using Messages.Commands;
+using Messages.Events;
 using NServiceBus;
 using NServiceBus.Logging;
 using System.Threading.Tasks;
@@ -13,7 +14,11 @@ namespace Sales
         {
             log.Info($"Received PlaceOrder, OrderId = {message.OrderId}");
 
-            return Task.CompletedTask;
+            var orderPlaced = new OrderPlaced
+            {
+                OrderId = message.OrderId
+            };
+            return context.Publish(orderPlaced);
         }
     }
 }
