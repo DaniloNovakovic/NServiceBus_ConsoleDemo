@@ -5,7 +5,7 @@ using NServiceBus.Logging;
 using System;
 using System.Threading.Tasks;
 
-namespace ConsoleApp1
+namespace ClientUI
 {
     class Program
     {
@@ -26,6 +26,8 @@ namespace ConsoleApp1
              */
             var transport = endpointConfiguration.UseTransport<LearningTransport>();
 
+            var routing = transport.Routing();
+            routing.RouteToEndpoint(typeof(PlaceOrder), "Sales");
 
             /* Start the endpoint */
             var endpointInstance = await Endpoint.Start(endpointConfiguration)
@@ -59,7 +61,7 @@ namespace ConsoleApp1
 
                         // Send the command to the local endpoint
                         log.Info($"Sending PlaceOrder command, OrderId = {command.OrderId}");
-                        await endpointInstance.SendLocal(command)
+                        await endpointInstance.Send(command)
                             .ConfigureAwait(false);
 
                         break;

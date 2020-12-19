@@ -3,7 +3,7 @@ using NServiceBus;
 using NServiceBus.Logging;
 using System.Threading.Tasks;
 
-namespace ConsoleApp1
+namespace Sales
 {
     public class PlaceOrderHandler : IHandleMessages<PlaceOrder>
     {
