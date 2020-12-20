@@ -62,7 +62,7 @@
     <Analyzer Include="..\packages\NServiceBus.7.4.4\analyzers\dotnet\cs\NServiceBus.Core.Analyzer.dll" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Common\Messages.csproj">
+    <ProjectReference Include="..\Messages\Messages.csproj">
       <Project>{4174457e-6ab2-4115-b9c0-3cab8863bff6}</Project>
       <Name>Messages</Name>
     </ProjectReference>
